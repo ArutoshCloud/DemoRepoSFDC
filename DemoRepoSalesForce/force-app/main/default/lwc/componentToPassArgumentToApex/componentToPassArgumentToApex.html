@@ -1,0 +1,35 @@
+<template>
+    <lightning-card  title={title}>
+        
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="Number" label="Enter First Number" name = "fNumber" value={fNumber} onchange={handlechanges}></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="Number" label="Enter Second Number" name = "sNumber" value={sNumber} onchange={handlechanges}></lightning-input>
+        </div>
+        <div class="btn-toolbar">
+        <lightning-button label="Add" name = "+" onclick={handlesubmit}></lightning-button>        
+        <lightning-button label="Subtract" name = "-" onclick={handlesubmit}></lightning-button>
+        <lightning-button label="Multiply"  name = "x" onclick={handlesubmit}></lightning-button>
+        <lightning-button label="Division" name = "/" onclick={handlesubmit}></lightning-button>
+    </div>
+    <div class="slds-p-around_medium lgc-bg">
+        <lightning-input type="checkbox" label="Previous Results"  onchange={handleSelectBox}></lightning-input>
+    </div>
+    <template if:true={displaydiv}>
+        <p>Result Of {fNumber} {operator} {sNumber} = {sum}</p>
+    </template>
+
+    <div>
+<template if:true={showpreviousresult}>
+    <template iterator:it={previousresult}>
+    <p key={it.vaLue}>{it.value}</p>
+</template>
+</template>
+                
+    </div>
+    
+
+    
+    </lightning-card>
+</template>

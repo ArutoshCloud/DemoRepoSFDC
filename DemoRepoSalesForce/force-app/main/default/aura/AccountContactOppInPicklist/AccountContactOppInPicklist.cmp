@@ -1,0 +1,45 @@
+<aura:component controller="AccountContactOppInPicklistController">
+    <aura:attribute name="acclist" type="Account[]"/>
+    <aura:attribute name="conlist" type="Contact[]"/>
+    <aura:attribute name="opplist" type="Opportunity[]"/>
+    <aura:attribute name="selectvalue" type="string"/>
+    <aura:attribute name="options" type="list"/>
+    <aura:handler name="init" value="{!this}" action="{! c.myaction }"/>
+    <lightning:select name="account" label="Account List" value="{!v.selectvalue}" onchange="{!c.getacc}">
+        <option value="" text="--Select--"/>
+        <aura:iteration items="{!v.acclist}" var="acc">            
+            <option value="{!acc.Id}" text="{!acc.Name}"/>
+        </aura:iteration>
+    </lightning:select>
+    
+    <lightning:select name="contact" label="Assosiated Contact's List">
+        <aura:if isTrue="{!v.conlist.length > 0}">
+            
+            <aura:iteration items="{!v.conlist}" var="con">            
+                <option value="{!con.Id}" text="{!con.LastName}"/>
+            </aura:iteration>
+                                    <aura:set attribute="else">
+                <option value="" text="No Contact"/>
+            </aura:set>
+
+        </aura:if>
+        
+        <!--aura:iteration items="{!v.conlist}" var="con">            
+                <option value="{!con.Id}" text="{!con.FirstName}"/>
+                        
+            </aura:iteration-->
+        
+    </lightning:select>
+    
+    <lightning:select name="contact" label="Assosiated Opportunity's List">
+        <aura:if isTrue="{!v.opplist.length > 0}">
+            <aura:iteration items="{!v.opplist}" var="opp">            
+                <option value="{!opp.Id}" text="{!opp.Name}"/>
+            </aura:iteration>
+                        <aura:set attribute="else">
+                <option value="" text="No Opportunity"/>
+            </aura:set>
+        </aura:if>
+        
+    </lightning:select>
+</aura:component>

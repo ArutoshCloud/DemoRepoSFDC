@@ -1,0 +1,67 @@
+<apex:page >
+<!-- Begin Default Content REMOVE THIS -->
+<apex:slds >
+    <div>
+        <p>Subscribe to SampleMessageChannel</p>
+        <button onclick="subscribe_Message_Channel()">Subscribe</button>
+        <div id="subscMessage" style="color:red"></div>
+
+        <p>Unsubscribe from SampleMessageChannel</p>        
+        <button onclick="unsubscribe_Message_Channel()">Unsubscribe</button>
+        <div id="unsubscMessage" style="color:red"></div>
+
+        
+        <p>Publish a message : </p>        
+        <button onclick="publishMC()">Publish</button>
+        <br/>
+        <br/>
+        <p>Received message : </p>
+        <textarea id="MCMessageTextArea" rows="10" style="disabled:true;resize:none;width:100%;" />
+        <div id="unsubscMessage" style="color:red"></div>
+    </div>
+    <script>
+            var SAMPLEMC = "{!$MessageChannel.SampleMessageChannel__c}";
+        var subscriptionToMC;
+        function onMCPublished(message) {
+            var textArea = document.querySelector("#MCMessageTextArea");
+            textArea.innerHTML = message ? JSON.stringify(message, null, '\t') : 'no message payload';
+        }
+
+        function subscribe_Message_Channel() {
+            if (!subscriptionToMC) {
+                subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished);
+                var divAr = document.querySelector("#subscMessage");
+                divAr.innerHTML = 'Message Channel Subscribed! ';
+                var divAr = document.querySelector("#unsubscMessage");
+                divAr.innerHTML = '';
+
+            }
+        }
+
+        function unsubscribe_Message_Channel() {
+            if (subscriptionToMC) {
+                sforce.one.unsubscribe(subscriptionToMC);
+                subscriptionToMC = null;
+                var divAr = document.querySelector("#unsubscMessage");
+                divAr.innerHTML = 'Message Channel UnSubscribed! ';
+                var divAr = document.querySelector("#subscMessage");
+                divAr.innerHTML = '';
+            }
+        }
+
+        function publishMC() {
+            const payload = {
+                recordId: "003HSGHHJDHJHE637",
+                recordData: { value: "Amit Singh" },
+                channel: 'SFDCPanther',
+                source: 'VF'
+            }
+            sforce.one.publish(SAMPLEMC, payload);
+        }
+
+    </script>
+    
+</apex:slds>
+
+<!-- End Default Content REMOVE THIS -->
+</apex:page>

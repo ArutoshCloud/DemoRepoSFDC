@@ -1,0 +1,28 @@
+<aura:component access="Global" controller="AccountInsertWithContact">
+    <aura:attribute type="string" name="name"/>
+    <aura:attribute type="boolean" name="show"/>
+    <lightning:input label="Account Name" value="{!v.name}" required="true" type="string"></lightning:input>	
+    <lightning:button aura:id="submit" variant="Brand" type="submit" label="Save" onclick="{!c.onClick}" />
+    <aura:if isTrue="{!v.show}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.close1Modal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <span class="slds-assistive-text">Close</span>
+                        
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Click Yes to Create Contact also Else Click No.</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:button name = "yes"  variant="brand" label="Yes"  onclick="{!c.createrecord}" />
+                        <lightning:button name = "no"  variant="brand" label="No"  onclick="{!c.createrecord}" />
+                    </div>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+</aura:component>

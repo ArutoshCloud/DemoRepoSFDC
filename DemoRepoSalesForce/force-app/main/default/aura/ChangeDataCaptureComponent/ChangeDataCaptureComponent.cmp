@@ -1,0 +1,15 @@
+<aura:component controller="DisplayAccountlist" implements="flexiPage:availableForAllPageTypes">
+	    <aura:attribute name="acclist" type="Account[]"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="subscription" type="Map" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+   
+    <lightning:empApi aura:id="empApi"/>
+    <lightning:button label="Click to show Accounts" name="Accounts" onclick="{!c.showAccounts}" />
+        <lightning:button label="Subscribe" onclick="{! c.subscribeToCDC }" variant ="brand" />
+    <lightning:button label="Unsubscribe" onclick="{! c.unsubscribe }" disabled="{!empty(v.subscription)}"/>
+    <div>
+        <lightning:datatable keyField="id" data="{!v.acclist}" columns="{!v.columns}" />
+    </div>
+    
+</aura:component>

@@ -1,0 +1,12 @@
+<template>
+    <lightning-card>
+        <lightning-input onchange={handlechanges} type="Search" label="Enter Contacts" value={searchKey}></lightning-input>
+    
+    </lightning-card>
+
+    <lightning-datatable
+    key-field="id"
+    data={Accounts}
+    columns={column}>
+</lightning-datatable>
+</template>

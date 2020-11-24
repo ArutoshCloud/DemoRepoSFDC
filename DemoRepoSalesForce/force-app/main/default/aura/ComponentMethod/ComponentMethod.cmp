@@ -1,0 +1,7 @@
+<aura:component controller="ComponentMethodCtrl" >
+	<aura:method name="retrieveacaccnts" >
+        <aura:attribute name="callback" type="function"/>
+        <aura:attribute name="ObjectName" type="string" default="Accounts"/>
+        <aura:attribute name="ObjectFields" type="string"/>
+    </aura:method>
+</aura:component>

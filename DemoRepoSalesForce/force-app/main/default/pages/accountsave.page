@@ -1,0 +1,16 @@
+<apex:page controller="tosave">
+    <apex:form >
+    <apex:pageblock >
+        <apex:pageblocksection >
+            <apex:inputfield value="{!a.Name}"/>
+            
+        </apex:pageblocksection>
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Save" action="{!save}"/>
+            
+            
+        </apex:pageBlockButtons>
+        </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

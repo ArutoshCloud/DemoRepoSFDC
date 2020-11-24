@@ -1,0 +1,29 @@
+<aura:component controller="createcontactcontroller">
+    <!--aura:attribute name="contactobj" type="Contact" default="{'sObjectType':'contact',
+                                                              'FirstName':'','LastName':'','Email':'','AccountId':''}"/>
+    <aura:attribute name="accountlist" type="Account[]"/>
+    <div class="row">
+        <lightning:input type="text" name="fName" label="Enter First Name" value="{!v.contactobj.FirstName}"/>
+        <lightning:input type="text" name="fName" label="Enter Last Name" value="{!v.contactobj.LastName}"/>
+        <lightning:input type="email" name="fName" label="Enter Email" value="{!v.contactobj.Email}"/>
+       <lightning:input type="search" name="accountId" label="Account Name" placeholder="Search Account"
+                        value="{!v.contactobj.AccountId}" onchange="{!c.handlesearch}">
+
+           <lightning:icon iconName="utility:search" alternativeText="Search"/>
+        </lightning:input>
+                   <aura:iteration items="{!v.accountlist}" var="acc">
+           {!acc.Name}
+           </aura:iteration>
+        
+    </div-->
+    <lightning:recordEditForm aura:id="recordEditForm"
+                              onsuccess="{!c.handlesave}" objectApiName="Contact" >
+        <lightning:messages />
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="AccountId" />
+        <lightning:inputField fieldName="Email" />
+        <lightning:inputField fieldName="Phone" />
+        <lightning:button class="slds-m-top_small" variant = "brand" type="submit" label="Create new" />
+    </lightning:recordEditForm>
+    
+</aura:component>

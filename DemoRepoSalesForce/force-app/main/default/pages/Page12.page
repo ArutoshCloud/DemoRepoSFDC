@@ -1,0 +1,21 @@
+<apex:page controller="Page12">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlocksection >
+                <apex:outputText value="Enter the Name of account"></apex:outputText>
+                
+                <apex:commandButton value="keyword" action="{!search}">
+                    <apex:inputText value="{!Keyword}"/>   
+                </apex:commandButton>
+                </apex:pageBlocksection>
+            <apex:pageBlocksection >
+                <apex:repeat value="{!acclist}" var="a">
+                    <apex:outputfield value="{!a.Name}"/>
+                </apex:repeat>
+                
+            </apex:pageBlocksection>
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

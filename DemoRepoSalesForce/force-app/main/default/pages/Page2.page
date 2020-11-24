@@ -1,0 +1,18 @@
+<apex:page StandardController="Account" extensions="PageOneExt">
+        <apex:form >
+        <apex:pageBlock title="Account Summary">
+            <apex:pageBlockSection Id="Acc_Record" Title="Current Record Id :: {!CurrentRecordId}" collapsible="false">
+                <apex:outputField value="{!acc.Name}"/><br/> 
+                <apex:outputField value="{!acc.Type}"/><br/>
+                <apex:outputField value="{!acc.Phone}"/><br/>
+            </apex:pageBlockSection>
+            <apex:pageblockbuttons >
+                <apex:commandButton action="{!savecustom}" value="Edit"/>
+                <apex:commandButton action="{!viewcustom}" value="view"/>
+                <apex:commandButton action="{!Resetcustom}" value="Reset"/>
+                <apex:commandButton action="{!deletecustom}" value="delete"/>
+
+            </apex:pageblockbuttons>
+            </apex:pageBlock>
+        </apex:form>
+</apex:page>

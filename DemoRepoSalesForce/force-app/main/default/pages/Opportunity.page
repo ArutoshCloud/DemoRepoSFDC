@@ -1,0 +1,17 @@
+<apex:page StandardController="Opportunity" extensions="OppextensionClass">
+    <apex:form >
+        <apex:pageBlock title="Opportunity Summary">
+            <apex:pageBlockSection Id="Opp_Record" Title="Current Record Id :: {!CurrentRecordId}" collapsible="false">
+                <apex:outputField value="{!opp.Name}"/><br/> 
+                <apex:outputField value="{!opp.closeDate}"/><br/>
+                <apex:outputField value="{!opp.StageName}"/><br/>
+            </apex:pageBlockSection>
+            <apex:pageblockbuttons >
+                <apex:commandButton action="{!savecustom}" value="Edit"/>
+                <apex:commandButton action="{!viewcustom}" value="view"/>
+                <apex:commandButton action="{!Resetcustom}" value="Reset"/>
+
+            </apex:pageblockbuttons>
+            </apex:pageBlock>
+        </apex:form>
+    </apex:page>

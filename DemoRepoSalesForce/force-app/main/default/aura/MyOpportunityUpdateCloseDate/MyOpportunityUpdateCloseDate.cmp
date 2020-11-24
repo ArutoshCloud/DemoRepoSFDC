@@ -1,0 +1,30 @@
+<aura:component controller="UpdateOpportunityCloseDate" implements="force:lightningQuickActionwithoutHeader,force:hasRecordId" access="global" >
+    <aura:attribute type="string" name="recordId"/>
+    <aura:attribute type="Opportunity" name="oppObj"/>
+    <aura:attribute name="closeDate" type="date"/>
+    <header class="slds-modal__header">
+      <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Update CloseDate</h2>      
+    </header>
+    
+    <lightning:input value="{!v.closeDate}" label="Opportunity CloseDate" type="date" required="true" messageWhenBadInput="Allowed Date Format::MMMM d,yyyy."/>
+    <footer class="slds-modal__footer">
+      <button class="slds-button slds-button_neutral" onclick="{!c.closeModel}">Cancel</button>
+      <button class="slds-button slds-button_brand" onclick="{!c.updateopp}">Update</button>
+    </footer>
+    <aura:html tag="style">
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }       
+        .slds-modal__content{
+            overflow-y:hidden !important;
+            height:unset !important;
+            max-height:unset !important;
+        }
+    </aura:html>
+    
+    
+    
+</aura:component>

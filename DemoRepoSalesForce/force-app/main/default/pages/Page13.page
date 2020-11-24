@@ -1,0 +1,17 @@
+<apex:page controller="page13">
+
+
+    <apex:pageBlock title="Business Summary" id="acclist">
+       
+    <apex:pageBlocktable value="{!accounts1}" var="a">       
+        <apex:column headerValue="S No." value="{!sr1no[a.id]}"/>
+        <apex:column headerValue="Account Name" value="{!a.Name}" />        
+        <apex:column headerValue="Contact Count" value="{!count1conts[a.Id]}"  />
+        <apex:column headerValue="Opportunity Count" value="{!count1Oppts[a.Id]}"  /> 
+        <apex:column headerValue="OpportunityLineItem Count" value="{!count1OppotsLineItem[a.Id]}"  /> 
+             
+        </apex:pageBlocktable>
+      
+    </apex:pageBlock>
+  
+</apex:page>

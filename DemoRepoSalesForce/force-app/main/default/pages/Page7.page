@@ -1,0 +1,7 @@
+<apex:page StandardController="Opportunity" extensions="paegsevexten">
+        <apex:pageBlock title="closed Date" >
+        {!opport}
+    <apex:messages > </apex:messages>
+    </apex:pageBlock>
+    <apex:detail >    </apex:detail>
+</apex:page>

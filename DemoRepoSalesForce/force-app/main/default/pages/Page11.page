@@ -1,0 +1,11 @@
+<apex:page Standardcontroller="opportunity" extensions="page11" >
+    <apex:form >
+    <apex:pageBlock >
+<apex:pageblockbuttons >
+        <apex:commandButton value="test" rendered="{!disable}"/>
+        </apex:pageblockbuttons>
+        
+        </apex:pageBlock>
+        <apex:detail ></apex:detail>
+    </apex:form>
+</apex:page>

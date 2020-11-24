@@ -1,0 +1,31 @@
+<aura:component>
+    <c:ComponentMethod aura:id="child"/>
+    <ltng:require scripts="{!join(',',$Resource.jQuery,
+                           $Resource.BootStrapdist + '/bootstrap-4.3.1-dist/js/bootstrap.min.js')}"
+                  styles="{!$Resource.BootStrapdist + '/bootstrap-4.3.1-dist/css/bootstrap.min.css'}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <aura:attribute name="acctsrecords" type="account[]"/>
+    
+    <table class="table table-striped">
+        
+        <aura:if isTrue="{!v.acctsrecords.length>0}">
+            <thead>
+                <tr>        
+                    <th><b>Contact Name</b></th>
+                </tr>
+            </thead>
+            <tbody>
+            <aura:iteration items="{!v.acctsrecords}" var="item">
+                <tr><td>{!item.Name}</td></tr>
+                
+                
+            </aura:iteration>
+                </tbody>
+            <aura:set attribute="else">
+                <B>Please Click on Button to view records</B>
+            </aura:set>
+        </aura:if><br/>
+        <lightning:button class="btn btn-primary" label="Click Me" title="Neutral action" onclick="{! c.handleClick }"/>
+    </table>
+    
+</aura:component>

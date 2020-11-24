@@ -1,0 +1,11 @@
+<apex:page controller="page14">
+    <apex:pageBlock >
+        <apex:pageBLocksection >
+            <apex:repeat value="{!directors}" var="dirKey">
+                <apex:outputText value="{!dirKey}" /> -- 
+                <apex:outputText value="{!directors[dirKey]}" /><br/>
+            </apex:repeat>
+        </apex:pageBLocksection>
+    </apex:pageBlock>
+    
+</apex:page>

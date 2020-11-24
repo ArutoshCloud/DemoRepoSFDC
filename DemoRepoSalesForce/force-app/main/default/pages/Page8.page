@@ -1,0 +1,11 @@
+<apex:page StandardController="Contact" REcordsetVar="contacts">
+    <div style="overflow:auto; width:800px; height:200px;">
+		<apex:pageBlock Title="My Contacts">
+        <apex:pageBlockTable value="{!contacts}" var="c">
+            <apex:column value="{!c.FirstName}"/>
+            <apex:column value="{!c.LastName}"/>
+            <apex:column value="{!c.Account.Name}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>        
+    </div>
+</apex:page>

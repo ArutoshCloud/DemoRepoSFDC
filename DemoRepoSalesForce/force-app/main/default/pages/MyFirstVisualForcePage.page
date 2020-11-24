@@ -1,0 +1,6 @@
+<apex:page StandardController="Account">
+    <h1>Hello World.</h1>
+    <apex:pageBlock title="A Block Title">
+
+    </apex:pageBlock>
+</apex:page>

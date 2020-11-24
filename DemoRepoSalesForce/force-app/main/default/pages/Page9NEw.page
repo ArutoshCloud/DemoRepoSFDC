@@ -1,0 +1,31 @@
+<apex:page Controller="PageNewNineControl">
+    <script type="text/javascript">
+ function callsave1(){
+     var accName = document.getElementById('{!$Component.form1.pageblockId.pageblocksectionId.nameid}').value;
+     // document.write('no');
+     if( confirm('Do You Really want to save Account With Name : '+accName+'?')){
+         //document.write('yes');
+         callsav();
+         }
+     /*var save = confirm('test');
+     if(save == true){
+         
+         callsav();
+         }*/
+     
+    }
+    </script>
+    
+    <apex:form id="form1">
+        <apex:actionFunction name="callsav" action="{!save}" reRender="callsav"/>
+        <apex:pageblock Title="Account" id="pageblockId">
+        <apex:pageBlockSection Title="Save Account" collapsible="false" id="pageblocksectionId">
+            <apex:inputfield value="{!a.Name}" id="nameid"/>            
+             </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" id="name" onclick="callsave1();"/>
+            </apex:pageBlockButtons>
+           
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

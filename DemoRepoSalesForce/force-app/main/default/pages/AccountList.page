@@ -1,0 +1,21 @@
+<apex:page Controller="AccountList" >
+    <apex:form >
+        <apex:pageBlock >
+                 <apex:messages ></apex:messages>
+                <apex:pageBlockTable value="{!accMap}" var="acc">
+                    <apex:column value="{!acc.Name}"/>
+                </apex:pageBlockTable>
+                
+            
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Refresh Button" reRender="account_list"/>
+            </apex:pageBlockButtons>
+       
+            
+        </apex:pageBlock>
+    </apex:form>
+    
+    
+    
+</apex:page>

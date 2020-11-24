@@ -1,0 +1,22 @@
+<apex:page controller="Page_Four_cont">
+    <apex:form >
+        <apex:pageBLock >
+            <apex:inputText value="{!Keyword}"/>
+            <apex:CommandButton Value="Search..." action="{!search}" reRender="account_list" id="button"/>
+                    <apex:pageBlockTable value="{!fullaccts}" Id="account_list" var="a" >
+                <apex:Column value="{!a.Name}"/>
+                <apex:Column value="{!a.Phone}"/>
+                <apex:Column value="{!a.ShippingPostalCode}"/>
+                <apex:Column value="{!a.ShippingCity}"/>
+            </apex:pageBlockTable>
+            
+            <!--<apex:pageBlockTable value="{!accts}" var="a"  rendered="{!ischanged}">
+                <apex:Column value="{!a.Name}"/>
+                <apex:Column value="{!a.Phone}"/>
+                <apex:Column value="{!a.ShippingPostalCode}"/>
+                <apex:Column value="{!a.ShippingCity}"/>
+            </apex:pageBlockTable>-->
+            
+        </apex:pageBLock>
+    </apex:form>
+</apex:page>

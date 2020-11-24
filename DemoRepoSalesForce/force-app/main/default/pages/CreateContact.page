@@ -1,0 +1,37 @@
+<apex:page StandardController="Contact" recordsetVar="Contacts">
+    <apex:form >
+        <table style = "width : 100%">
+            <tr>
+                <td>
+                    <apex:outputText value="{!PageNumber} of {! CEILING(ResultSize/PageSize)}"/>
+                </td>
+                <td align="center">
+                    <apex:commandButton action="{!Previous}" value="<< Previous" rendered="{!HasPrevious}"/>
+                    <apex:OutputText style="color:#ccc" value="<< Previous" rendered="{!Not(HasPrevious)}"/>
+                    &nbsp;&nbsp;
+                    <apex:commandButton action="{!Next}" value="Next >>" rendered="{!HasNext}"/>
+                    <apex:outputText style="Color:#ccc" value="Next >>" rendered = "{!not(HasNext)}"/>
+                </td>
+                <td>
+					<apex:selectList value="{!PageSize}" size="1">
+                        <apex:selectOption itemvalue="5" itemLabel="5"/>
+                        <apex:selectOption itemvalue="20" itemLabel="20"/>
+                        <apex:actionSupport event="onchange" reRender="contact_list"/>
+                    </apex:selectList>                    
+                </td>
+            </tr>
+        </table>
+        <apex:pageBlock Title=" Contact" id="Contact_list">
+            Filter:
+            <apex:selectlist value="{!filterId}" size="1">
+                <apex:selectoptions value="{! listviewOptions}"/>
+                <apex:actionSupport event="onchange" reRender="Contact_list"/>
+            </apex:selectlist>
+            <apex:pageBlocktable value="{! contacts}" var="ct" >
+                <apex:column value="{!ct.FirstName}" />
+                <apex:column value="{!ct.LastName}" />
+                <apex:column value="{!ct.Email}" />
+            </apex:pageBlocktable>
+        </apex:pageBlock>
+    </apex:form>    
+</apex:page>

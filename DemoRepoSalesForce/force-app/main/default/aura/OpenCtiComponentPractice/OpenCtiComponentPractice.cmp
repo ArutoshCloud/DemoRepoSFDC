@@ -1,0 +1,14 @@
+<aura:component>
+    <aura:attribute name="phone" type="String" />
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div>
+        
+<lightning:button variant="Neutral" name="disableClickToDial" label="disableClickToDial" onclick="{!c.disableClickToDial}"/>
+<lightning:button variant="Neutral" name="enableClickToDial" label="enableClickToDial" onclick="{!c.enableClickToDial}"/>
+<lightning:button variant="Neutral" name="getAppViewInfo" label="getAppViewInfo" onclick="{!c.getAppViewInfo}"/>
+<lightning:button variant="Neutral" name="setSoftphonePanelHeight" label="setSoftphonePanelHeight" onclick="{!c.setSoftphonePanelHeight}"/>
+<!--lightning:button variant="Neutral" name="onClickToDial" label="onClickToDial" onclick="{!c.onClickToDial}"/-->
+
+<!-- <lightning:clickToDial value="{!v.phone}"/> -->
+</div>
+</aura:component>

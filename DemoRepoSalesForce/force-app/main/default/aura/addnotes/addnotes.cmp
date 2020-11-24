@@ -1,0 +1,61 @@
+<aura:component description="Telegenta_AddNotes" controller="addnotes" access="global" implements="flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+    <aura:attribute name="noteContent" type="String" access="global" description="Will contain the value of the text area."/>
+    <aura:attribute name="showNotes" type="Boolean" access="global" default="false" description="to show the previous created notes."/>
+    <aura:attribute name="notesList" type="List" access="global" default="[]" description="Will contain the previous notes."/>
+    <aura:attribute name="recordId" type="String" access="global" description="Will contain the record id."/>
+    <aura:attribute name="sObjectName" type="String" access="global" description="Will contain the sobject name."/>
+    <!--<lightning:messageChannel type="telegenta__Telegenta_DialerToCallDetail__c" aura:id="lmsDemohannel" scope="APPLICATION" />-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div>
+        <div class="slds-p-around_small backgroundColor">
+
+            <div>
+                <lightning:layout multipleRows="true" >
+                    <lightning:layoutItem size="12" largeDeviceSize="12" mediumDeviceSize="12" smallDeviceSize="12">
+                        <div>
+                            <lightning:textarea name="input1" label="Note" value="{!v.noteContent}"/>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" largeDeviceSize="12" mediumDeviceSize="12" smallDeviceSize="12">
+                        <div style="float: right;">
+                            <lightning:button variant="brand" label="Add Note" title="" onclick="{! c.saveNote }" />
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </div>
+            <!--Showing the previously created notes-->
+            <div>
+                <aura:iteration  items="{!v.notesList}" var="notes" indexVar="tabIndex">
+                    <div class="slds-media slds-timeline__item_expandable slds-timeline__item_call">
+                        <div class="slds-media__figure">
+                            <lightning:icon class="slds-m-left_large slds-timeline__icon" iconName="doctype:box_notes" size="small" variant="inverse" />
+                        </div>
+                        <div class="slds-media__body">
+                            <lightning:layout horizontalAlign="spread" verticalAlign="center">
+                                <lightning:layoutItem>
+
+                                    <b>{!notes.Title}</b>
+
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <div class="slds-m-top_xx-small">
+                                <article class="slds-box slds-theme_shade slds-m-top_xx-small slds-m-horizontal_xx-small">
+                                    <div class="contentClass">
+                                        <lightning:formattedText value="{!notes.Body}" />
+                                    
+                                        <div>
+                                        </div>
+
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="slds-media__figure slds-media__figure_reverse"></div>
+                        </div>
+                    </div>
+                </aura:iteration>
+            </div>
+
+        </div>
+    </div>
+</aura:component>

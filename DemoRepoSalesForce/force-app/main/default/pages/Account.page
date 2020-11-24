@@ -1,0 +1,14 @@
+<apex:page standardController="Account" extensions="CurrentRecordIdTest">
+    <apex:form >
+        <apex:pageBlock Title="Account Summary">
+            <apex:PageBlockSection Title="Current record Account ID:: {!currentRecordId}" collapsible="False" id="AccountId">
+                
+            </apex:PageBlockSection>
+            <apex:pageblockbuttons >
+                <apex:commandButton value="GetId" reRender="AccountId"/>
+            </apex:pageblockbuttons>
+            <apex:detail />
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,9 @@
+<aura:component implements="flexiPage:availableforAllPageTypes">
+<aura:attribute name="input" type="string" default="default text"/>
+<lightning:messageChannel
+type="SampleMessageChannel__c"
+aura:id="sampleMessageChannel"
+/>
+<lightning:input type="string" value="{!v.input}" />
+<lightning:button label="Publish" onclick="{!c.handleclick}" />
+</aura:component>

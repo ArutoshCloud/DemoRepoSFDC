@@ -1,0 +1,25 @@
+<aura:component implements="flexiPage:availableforAllPageTypes">
+  <aura:attribute name="messageFromPublisher" type="string" />
+  <aura:attribute name="input" type="string" default="default text"/>
+<lightning:messageChannel
+type="SampleMessageChannel__c"
+aura:id="sampleMessageChannel"
+/>
+
+    <lightning:messageChannel
+    type="SampleMessageChannel__c"
+    onMessage="{!c.handleMessage}"
+    scope="APPLICATION"
+  />
+  <lightning:card>
+    <lightning:input type="string" value="{!v.input}" />
+<lightning:button label="Publish" onclick="{!c.handleclick}" />
+    <lightning:button label="Subscribe" onclick="{!c.subscribe}" />
+    <lightning:button label="Unsubscribe" onclick="{!c.subscribe}" />
+    <div>
+    Message Received : 
+    {!v.messageFromPublisher}
+    </div>
+  </lightning:card>
+
+</aura:component>

@@ -1,0 +1,34 @@
+<apex:page controller="PagesixControl">.
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!accounts}" var="acc">
+            <apex:column value="{!acc.Name}"/>
+        
+        </apex:pageBlockTable>
+        <table>
+            <tr>
+            <td>
+                Page:<apex:outputText value="{!setcon.PageNumber} of {!ceiling(setcon.ResultSize/setcon.PageSize)}"/>
+                </td>''
+                <td align="center">
+                    <apex:commandLink action="{!setcon.Previous}" value="<< Previous" rendered="{!setcon.hasprevious}"/>
+                    <apex:outputTExt style="color:#ccc;" value="<< Previous" rendered="{!not(setcon.hasprevious)}"/>
+                    &nbsp;
+                    &nbsp;
+                    <apex:commandLink action="{!setcon.Next}" value="Next >>" rendered="{!setcon.hasNext}"/>
+                    <apex:outputTExt style="color:#ccc;" value="Next >>" rendered="{!not(setcon.hasNext)}"/>                   
+                
+                </td>
+                <td align="right">
+                       <apex:selectList value="{!setcon.pageSize}" size="1">
+                            <apex:selectoption itemvalue="10" itemLabel="10"/>
+                            
+                        </apex:selectList>
+                </td>
+            </tr>
+            
+        </table>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

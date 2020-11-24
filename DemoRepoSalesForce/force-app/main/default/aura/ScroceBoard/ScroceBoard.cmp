@@ -1,0 +1,290 @@
+<aura:component >
+    <aura:attribute name="batsman1" type="string" default=""/>
+    <aura:attribute name="strike" type="string" default="*"/>
+    <aura:attribute name="Setrun" type="integer" default="0"/>
+    <aura:attribute name="Setover" type="integer" default="0"/>    
+    <aura:attribute name="batsman2" type="string" default=""/>
+    <aura:attribute name="run" type="integer" default="0"/>
+    <aura:attribute name="Targetrun" type="integer" default="25"/>
+    <aura:attribute name="Totalover" type="integer" default="2"/>
+    <aura:attribute name="crrrun" type="integer" default="0"/>
+    <aura:attribute name="Player" type="string" default=""/>
+    <aura:attribute name="batsman" type="string" default=""/>
+    <aura:attribute name="Player1" type="string" default="Batsman1" />
+    <aura:attribute name="Player2" type="string" default="Batsman2"/>
+    <aura:attribute name="run1" type="integer" default="0"/>
+    <aura:attribute name="count" type="integer" default="1"/>
+    <aura:attribute name="run2" type="integer" default="0"/>
+    <aura:attribute name="target" type="integer" default="20"/>
+    <aura:attribute name="over" type="decimal" default="0.0"/>
+    <aura:attribute name="ball1" type="integer" default="0"/>
+    <aura:attribute name="ball2" type="integer" default="0"/>
+    <aura:attribute name="stkRate1" type="decimal" default="0"/>
+    <aura:attribute name="stkRate2" type="decimal" default="0"/>
+    <aura:attribute name="runRate" type="decimal" default="0"/>
+    <aura:attribute name="runReq" type="decimal" default="0"/>
+    <aura:attribute name="radiovalue1" type="string" default=""/>
+    <aura:attribute name="radiovalue2" type="string" default=""/>
+    <aura:attribute name="show" type="boolean" default="false"/>
+    <aura:attribute name="show1" type="boolean" default="false"/>
+    <aura:attribute name="show2" type="boolean" default="false"/>
+    <aura:attribute name="show3" type="boolean" default="false"/>
+    <aura:attribute name="show4" type="boolean" default="false"/>
+        <aura:attribute name="showbatsman1" type="boolean" default="false"/>
+    <aura:attribute name="showbatsman2" type="boolean" default="false"/>
+    <aura:attribute name="backgroundImageURL" type="String" default=""/>
+    <aura:attribute name="backgroundImageURL1" type="String" default=""/>
+    <ltng:require scripts="{!join(',',
+                           $Resource.BootStrapdist + '/bootstrap-4.3.1-dist/js/bootstrap.min.js')}"
+                  styles="{!$Resource.BootStrapdist + '/bootstrap-4.3.1-dist/css/bootstrap.min.css'}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>   
+    <div style="{!'position: relative; height: 100vh; background:' + v.backgroundColor + ' url(' + v.backgroundImageURL +') no-repeat;background-position: center;background-size: cover;'}">
+        
+        <lightning:layout class="slds-page-header slds-page-header_object-home">
+            <lightning:layoutItem>
+                <lightning:icon iconName="standard:goals" alternativeText="My Expenses"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    <h1 class="slds-text-heading_label">Cricket</h1>
+                    <h2 class="slds-text-heading_medium">ScoreBoard</h2>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout >
+        <aura:if isTrue="{!v.show}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.close1Modal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <span class="slds-assistive-text">Close</span>
+                        
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Choose BatsMan</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:button aura:id = "Batsman1"  variant="brand" label="Batsman1" disabled="{!v.showbatsman1}" onclick="{!c.closemodel}" />
+                        <lightning:button aura:id = "Batsman2"  variant="brand" label="Batsman2" disabled="{!v.showbatsman2}" onclick="{!c.closemodel}" />
+                    </div>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <aura:if isTrue="{!v.show1}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.close3Modal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <span class="slds-assistive-text">Close</span>
+                        
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Choose BatsMan</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:flow aura:id="flowData"  onstatuschange="{!c.statusChange}"/>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <aura:if isTrue="{!v.show2}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.close2Modal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <span class="slds-assistive-text">Close</span>
+                        
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Set Target</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:input label="Set Target Run" value="{!v.Targetrun}" type="integer"/>
+                        <lightning:input label="Set Over Run" value="{!v.Totalover}" type="integer"/>
+                    </div>
+                    <lightning:button aura:id = "set" label="Set" variant="Brand" onclick="{!c.close2Modal}"/>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        
+        
+        <lightning:layout class="layout1" horizontalAlign="center">
+            
+            
+            <lightning:layoutItem  flexibility="auto" padding="around-small">
+                
+                <lightning:button aura:id = "6"  variant="brand" label="6" onclick="{!c.handleRun}">
+                    
+                </lightning:button>
+                
+            </lightning:layoutItem >
+            
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+                <lightning:button aura:id = "4"  variant="brand" label="4" onclick="{!c.handleRun}" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+                <lightning:button aura:id = "3"  variant="brand" label="3" onclick="{!c.handleRun}" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+                <lightning:button aura:id = "2"  variant="brand" label="2" onclick="{!c.handleRun}" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+                <lightning:button aura:id = "1"  variant="brand" label="1" onclick="{!c.handleRun}" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+                <lightning:button aura:id = "0"  variant="brand" label="0" onclick="{!c.handleRun}" />
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+                <lightning:button aura:id = "out"  variant="Destructive" label="Out" onclick="{!c.handleflow}" />
+            </lightning:layoutItem>
+            
+            <!--aura:if isTrue="{!v.count >6}">
+            <lightning:layoutItem padding="around-medium" size="1">
+                <lightning:button aura:id = "btovct" disabled="false" value = "1" variant="neutral" label="Over Count" onclick="{!c.handleOver}" />
+            </lightning:layoutItem>
+            <aura:set attribute="else">
+                <lightning:layoutItem padding="around-medium" size="1">
+                    <lightning:button aura:id = "btovct" disabled="true" value = "1" variant="neutral" label="Over Count" onclick="{!c.handleOver}" />
+                </lightning:layoutItem>
+            </aura:set>
+        </aura:if-->      
+            
+        </lightning:layout>
+        <lightning:layout horizontalAlign="end">
+            <lightning:layoutItem>
+                <lightning:button variant="brand" label="Set Taget" onclick="{!c.setTarget}"/>
+            </lightning:layoutItem>
+            <aura:if isTrue="{!v.show3}">
+                <div class="slds-box slds-theme_default">
+                    Total Run : <ui:outputText value="{!v.Targetrun}" /><br/>
+                    Total Over : <ui:outputText value="{!v.Totalover}" />
+                </div>
+                
+            </aura:if>
+        </lightning:layout>
+        
+        <lightning:layout horizontalAlign="center">
+            <lightning:layoutItem padding="around-small" flexibility="auto" size="3">
+                <div class="slds-box slds-theme_default">
+                    <h2>Summary</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Runs:{!v.run}</th>
+                                    <th>Overs:{!v.over}</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>
+                                    
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" flexibility="auto" size="6">
+                <div class="slds-box slds-theme_default">
+                    <h2>Score</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>BatsMan</th>
+                                    <th>Run</th>
+                                    <th>Balls</th>
+                                    <th>Stk Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{!v.Player1}<aura:if isTrue="{!v.show4}">{!v.strike}</aura:if></td>
+                                    <td>{!v.run1}</td>
+                                    <td>{!v.ball1}</td>
+                                    <td>{!v.stkRate1}</td>
+                                </tr>
+                                <tr>
+                                    <td>{!v.Player2}</td>
+                                    <td>{!v.run2}</td>
+                                    <td>{!v.ball2}</td>
+                                    <td>{!v.stkRate2}</td>
+                                </tr>
+                            </tbody>
+                            
+                            
+                        </table>
+                    </div>
+                    
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" flexibility="auto" size="3">
+                <div class="slds-box slds-theme_default">
+                    <h2><b>Other Information</b></h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Run Rate : {!v.runRate}</th>
+                                    <th>Required Run Rate : {!v.runReq}</th>                             
+                                </tr>
+                            </thead>
+                             <tr>
+                                <td>
+                                    
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                            </tr>
+                           
+
+                            
+                        </table>
+                    </div>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        
+    </div>
+    
+    
+    
+    
+    
+    
+</aura:component>

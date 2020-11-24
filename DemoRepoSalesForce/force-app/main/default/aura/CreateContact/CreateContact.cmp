@@ -1,0 +1,9 @@
+<aura:component >
+	    <lightning:recordEditForm aura:id="recordEditForm"
+                              onsuccess="{!c.handlesave}" objectApiName="Contact" >
+        <lightning:messages />
+            <br/><lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="AccountId" />
+        <lightning:button class="slds-m-top_small" variant = "brand" type="submit" label="Create new" />
+    </lightning:recordEditForm>
+</aura:component>

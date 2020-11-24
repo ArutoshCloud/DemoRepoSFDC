@@ -1,0 +1,13 @@
+<template>
+    <lightning-card>
+        <lightning-input type="CheckBox" label="SelectBox" onchange={inputChangesHandler} ></lightning-input>
+        <template if:true={displayDiv}>
+            <div>I am true.</div>
+        </template>
+        <template if:false={displayDiv}>
+            <div>I am false.</div>
+        </template>
+
+    </lightning-card>
+    
+</template>

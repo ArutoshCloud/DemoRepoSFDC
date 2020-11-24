@@ -1,0 +1,81 @@
+<aura:component controller="DisplayAllObjectClass">
+    <aura:attribute name="wrapper" type="Object"/>
+    <aura:attribute name="options" type="List" />
+    <aura:attribute name="selectvalue" type="String"/>
+    <aura:attribute name="fields" type="List" />
+    <ltng:require scripts="{!join(',',$Resource.jQuery,
+                           $Resource.BootStrapdist + '/bootstrap-4.3.1-dist/js/bootstrap.min.js')}"
+                  styles="{!$Resource.BootStrapdist + '/bootstrap-4.3.1-dist/css/bootstrap.min.css'}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <aura:handler name="init" value="{!this}" action="{!c.myaction}"/>
+    
+    <!--lightning:select name="Objects" label="Select Object: " aura:id="objid" 
+                      value="{!v.selectvalue}" onchange="{!c.getfield}">
+        <aura:iteration items="{!v.options}" var="objname">
+            <option value="{!objname}" text="{!objname}"/>
+        </aura:iteration>
+    </lightning:select> 
+    <lightning:select name="Field" label="Object's Fields" aura:id="fldid">
+    <aura:iteration items="{!v.fields}" var="fldname">
+        <option value="{!fldname}" text="{!fldname}"/>
+        </aura:iteration-->
+    
+    <div class="slds-form-element">
+        
+        <div class="slds-form-element__control">
+            <div class="slds-select_container">
+                <lightning:select name="Objects" label="Select Object: " aura:id="objid" 
+                                  value="{!v.selectvalue}" onchange="{!c.getfield}">
+                    <aura:iteration items="{!v.options}" var="objname">
+                        <option value="{!objname}" text="{!objname}"/>
+                    </aura:iteration>
+                </lightning:select>
+                <lightning:select name="Field" label="Object's Fields" aura:id="fldid">
+                    <aura:iteration items="{!v.wrapper.orgfields}" var="objt">
+                        <option value="{!objt}" text="{!objt}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <div>
+                <table class="table table-striped">
+                    <thead>                    <tr>
+                        <th>{!v.selectvalue} Fields</th>
+                        <th>{!v.selectvalue} Field APIName</th>
+                        <th>{!v.selectvalue} Field Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <td>
+                            <aura:iteration items="{!v.wrapper.orgfields}" var="obj">  
+                                <tr>
+                                    {!obj}
+                                </tr>
+                                
+                            </aura:iteration>
+                        </td>                    
+                        <td>
+                            <aura:iteration items="{!v.wrapper.orgfieldsAPIName}" var="obj1">
+                                <tr>
+                                    {!obj1}
+                                </tr>
+                            </aura:iteration>
+                        </td>
+                        <td>
+                            <aura:iteration items="{!v.wrapper.orgfieldsdataType}" var="obj2">    
+                                <tr>
+                                    {!obj2}
+                                </tr>
+                            </aura:iteration>
+                        </td>
+                        
+                        
+                    </tbody>
+                    
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

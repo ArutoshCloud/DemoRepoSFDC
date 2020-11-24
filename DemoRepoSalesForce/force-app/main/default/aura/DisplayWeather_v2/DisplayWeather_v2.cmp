@@ -1,0 +1,14 @@
+<aura:component controller="DisplayWeatherController" implements="flexipage:availableForAllPageTypes">
+	    <aura:attribute name="cityName" type="String" default=""/>
+    <aura:attribute name="Data" type="list" default=""/>
+        <lightning:card  title="Hello">
+<lightning:input label="Enter Name For City" name="cName" value="{!v.cityName}" required="true" /> 
+            <lightning:button label="Submit"  variant ="Brand" onclick="{! c.submit}" />
+            <div>
+                <aura:iteration items="{!v.Data}" var="dt" indexVar="dt">
+{!dt.key} – {!dt.value}<br/><br/>
+</aura:iteration>
+            {!v.Data}
+            </div>
+    </lightning:card>
+</aura:component>
